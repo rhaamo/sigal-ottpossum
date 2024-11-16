@@ -18,7 +18,7 @@ A simple theme for [Sigal](https://github.com/saimn/sigal) using:
 
 ## Configuration
 
-Set the thumbnails to `320px` width and disable their cropping, i.e.:
+You should put it like that or things will broke or even explode:
 
 ```python
 img_size = (1024, 768)
