@@ -5,7 +5,8 @@ A simple theme for [Sigal](https://github.com/saimn/sigal) using:
 - [Lightbox](https://lokeshdhakar.com/projects/lightbox2/)
 - based on [krylovsk sigal-justlight](https://github.com/krylovsk/sigal-justlight)
 
-![screenshot](demo/screenshot.png)
+![album view](demo/album_view.png)
+![image view](demo/image_view.png)
 
 ## Features
 
