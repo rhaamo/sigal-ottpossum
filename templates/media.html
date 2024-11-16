@@ -8,14 +8,14 @@
                         <div class="col-2">
                             {% if previous_media %}
                                 <a href="{{ previous_media.url }}.html" data-glightbox="" id="link_prev_media">
-                                    <img class="shadow-hover" src="{{ previous_media.thumbnail }}" alt="{{ previous_media.title }}" title="Previous: {{ previous_media.title }}" />
+                                    <img class="img-fluid shadow-hover" src="{{ previous_media.thumbnail }}" alt="{{ previous_media.title }}" title="Previous: {{ previous_media.title }}" />
                                 </a>
                             {% endif %}
                         </div>
 
                         <div class="col-8">
                             {% if media.type == "image" %}
-                                <a href="{{ media.big_url }}" data-lightbox="{{ media.title }}" data-title="{{ media.title }}"><img class="shadow-hover" src="{{ media.url }}" alt="{{ media.title }}" title="Show bigger" /></a>
+                                <a href="{{ media.big_url }}" data-lightbox="{{ media.title }}" data-title="{{ media.title }}"><img class="img-fluid shadow-hover" src="{{ media.url }}" alt="{{ media.title }}" title="Show bigger" /></a>
                             {% endif %}
                             {% if media.type == "video" %}
                                 <video controls>
@@ -27,7 +27,7 @@
                         <div class="col-2">
                             {% if next_media %}
                                 <a href="{{ next_media.url }}.html" id="link_next_media">
-                                    <img class="shadow-hover" src="{{ next_media.thumbnail }}" alt="{{ next_media.title }}" title="Next: {{ next_media.title }}" />
+                                    <img class="img-fluid shadow-hover" src="{{ next_media.thumbnail }}" alt="{{ next_media.title }}" title="Next: {{ next_media.title }}" />
                                 </a>
                             {% endif %}
                         </div>
