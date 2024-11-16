@@ -1,0 +1,36 @@
+{% if media %}
+    <meta property="og:title" content="{{ media.title|striptags }} / {{ album.title|striptags }} - {{ settings.title }}">
+    {% if settings.embeds_url %}
+    <meta property="og:image" content="{{ settings.embeds_url }}{{album.url}}{{ media.big_url }}">
+    {% endif %}
+    <meta property="og:type" content="image">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="{{ media.size.width }}">
+    <meta property="og:image:height" content="{{ media.size.height }}">
+    <meta property="og:image:alt" content="{{ media.title }}">
+    {% if media.description %}
+    <meta property="og:description" content="{{ media.description }}">
+    {% endif %}
+    {% if settings.embeds_url %}
+    <meta property="og:url" content="{{ settings.embeds_url }}{{album.url}}{{ media.url }}">
+    {% endif %}
+    
+    <meta name="twitter:card" content="summary_large_image">
+    {% if settings.embeds_url %}
+    <meta property="twitter:url" content="{{ settings.embeds_url }}{{album.url}}{{ media.url }}">
+    <meta property="twitter:site" content="{{ settings.embeds_url }}{{album.url}}{{ media.url }}">
+    <meta property="twitter:image" content="{{ settings.embeds_url }}{{album.url}}{{ media.big_url }}">
+    {% endif %}
+    <meta property="twitter:title" content="{{ media.title|striptags }} / {{ album.title|striptags }} - {{ settings.title }}">
+    {% if media.description %}<meta property="twitter:description" content="{{ media.description }}">{% endif %}
+{% else %}
+    <meta property="og:title" content="{{ album.title|striptags }} - {{ settings.title }}">
+    <meta property="og:type" content="website">
+    {% if settings.embeds_url %}
+    <meta property="og:url" content="{{ settings.embeds_url }}{{ album.url }}">
+    {% endif %}
+    {% if album.description %}<meta property="og:description" content="{{ album.description }}">{% endif %}
+
+    <meta property="twitter:title" content="{{ album.title|striptags }} - {{ settings.title }}">
+    {% if album.description %}<meta property="twitter:description" content="{{ album.description }}">{% endif %}
+{% endif %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-10">
+        {% for media in album.medias %}
+        {% if media.type == "video" %}
+        <div style="display:none;" id="video{{ loop.index0 }}">
+          <video class="lg-video-object lg-html5" controls="" preload="none">
+            <source src="{{ media.url }}" type="{{ media.mime }}">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <div id="gallery">
+        {% for media in album.medias %}
+          {% if media.type == "image" %}
+          <a href="{{ media.url}}.html" data-sub-html="{{ media.description }}" title="{{ media.title }}">
+            <img src="{{ media.thumbnail }}" alt="{{ media.title }}" />
+          </a>
+          {% endif %}
+
+          {% if media.type == "video" %}
+            <div class="video" data-poster="{{ media.thumbnail }}" data-sub-html="{{ media.description }}" data-html="#video{{ loop.index0 }}">
+              <a href="{{ media.url }}.html">
+                <img src="{{ media.thumbnail }}" alt="{{ media.title }}" />
+              </a>
+              <div class="caption">
+                {{ media.title }}
+              </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-2">
+        <h1><i class="ri-folder-info-line"></i> Album infos</h1>
+
+        <div class="h4">
+          {% if album.meta.date %}<i class="ri-calendar-line"></i>: {{ album.meta.date|first }}<br/>{% endif %}
+          <div id="description">
+            <div class="description">{{ album.description|default("No Description") }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block late_js %}
+  <script src="{{ theme.url }}/js/jquery-3.7.1.min.js"></script>
+  <script src="{{ theme.url }}/js/jquery.justifiedGallery.min.js"></script>
+  <link rel="stylesheet" href="{{ theme.url }}/css/justifiedGallery.min.css" />
+  <script src="{{ theme.url }}/js/album.js"></script>
+{% endblock %}

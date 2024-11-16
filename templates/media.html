@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-9 center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2">
+                            {% if previous_media %}
+                                <a href="{{ previous_media.url }}.html" data-glightbox="" id="link_prev_media">
+                                    <img class="shadow-hover" src="{{ previous_media.thumbnail }}" alt="{{ previous_media.title }}" title="Previous: {{ previous_media.title }}" />
+                                </a>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-8">
+                            {% if media.type == "image" %}
+                                <a href="{{ media.big_url }}" data-lightbox="{{ media.title }}" data-title="{{ media.title }}"><img class="shadow-hover" src="{{ media.url }}" alt="{{ media.title }}" title="Show bigger" /></a>
+                            {% endif %}
+                            {% if media.type == "video" %}
+                                <video controls>
+                                    <source src='{{ media.url }}' type='video/webm' />
+                                </video>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-2">
+                            {% if next_media %}
+                                <a href="{{ next_media.url }}.html" id="link_next_media">
+                                    <img class="shadow-hover" src="{{ next_media.thumbnail }}" alt="{{ next_media.title }}" title="Next: {{ next_media.title }}" />
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <h1><i class="ri-image-2-line"></i> {{ media.title }}</h1>
+
+                <div class="h4">
+                    {% if media.description %}
+                        <div class="description">{{ media.description }}</div>
+                    {% endif %}
+                    
+                    {% if album.meta.filmscan %}
+                        <i class="ri-calendar-line"></i>: {% if album.meta.date %}{{ album.meta.date|first }}{% else %}{{ media.date }}{% endif %}<br/><br/>
+                        {% if album.meta.filmcamera %}<i class="ri-camera-line"></i>: {{ album.meta.filmcamera|first }}<br />{% endif %}
+
+                        {% if media.meta.shotiso %}
+                        <i class="ri-movie-2-line"></i>: {{ album.meta.filmused|first }} / {{ media.meta.shotiso|first }} ISO<br />
+                        {% elif album.meta.filmiso %}
+                        <i class="ri-movie-2-line"></i>: {{ album.meta.filmused|first }}{% if album.meta.filmiso %} / {{ album.meta.filmiso|first }} ISO{% endif %}<br />
+                        {% else %}
+                        {% if album.meta.filmused %}<i class="ri-movie-2-line"></i>: {{ album.meta.filmused|first }}<br/>{% endif %}
+                        {% endif %}
+
+                        {% if media.meta.shotfocal %}
+                        <i class="ri-camera-lens-line"></i>: f/{{ media.meta.shotfocal|first }}<br/>
+                        {% endif %}
+                        {% if media.meta.shotaperture %}
+                        <i class="ri-camera-lens-fill"></i>: f/{{ media.meta.shotaperture|first }}<br/>
+                        {% endif %}
+                        {% if media.meta.shotspeed %}
+                        <i class="ri-speed-up-line"></i>: {{ media.meta.shotspeed|first }}<br/>
+                        {% endif %}
+                        {% if album.meta.filmscanner %}
+                        <i class="ri-polaroid-line"></i>: Scanned with {{ album.meta.filmscanner|first }}<br />
+                        {% endif %}
+                    {% else %}
+                        <i class="ri-calendar-line"></i>: {% if album.meta.date %}{{ album.meta.date|first }}{% else %}{{ media.exif.datetime }}{% endif %}<br/><br/>
+                        <i class="ri-camera-line"></i>: {{ media.exif.Make }} {{ media.exif.Model }}<br />
+                        {% if media.exif.LensModel %}<i class="ri-camera-line"></i>: {{ media.exif.LensModel }}<br />{% endif %}
+                        <i class="ri-camera-lens-line"></i>: {{ media.exif.focal }} mm<br />
+                        <i class="ri-movie-2-line"></i>: {{ media.exif.iso }} ISO<br />
+                        <i class="ri-camera-lens-fill"></i>: f/{{ media.exif.fstop }}<br/>
+                        <i class="ri-speed-up-line"></i>: {{ media.exif.exposure }} s<br/>
+                    {% endif %}
+                </div>
+
+                {% if album.description %}
+                <br />
+                <hr>
+                <h1><i class="ri-folder-info-line"></i> Album description:</h1>
+                <div class="description">{{ album.description }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block late_js %}
+    <script src="{{ theme.url }}/js/jquery-3.7.1.min.js"></script>
+    <script src="{{ theme.url }}/js/lightbox.min.js"></script>
+    <script src="{{ theme.url }}/js/media.js"></script>
+{% endblock %}

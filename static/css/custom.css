@@ -1,0 +1,17 @@
+div.description {
+    border-left: 1px solid grey;
+    padding-left: 5px;
+}
+
+img.shadow-hover {
+    -webkit-transition: opacity 0.2s ease-in;
+    -moz-transition-property: opacity;
+    -moz-transition-duration: 0.2s;
+    -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    -o-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  }
+img.shadow-hover:hover {
+    filter: brightness(1.1);
+}

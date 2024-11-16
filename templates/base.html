@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="{{ settings.html_language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    {% if media %}
+    <title>{{ media.title|striptags }} / {{ album.title|striptags }} - {{ settings.title }}</title>
+    {% else %}
+    <title>{{ album.title|striptags }} - {{ settings.title }}</title>
+    {% endif %}
+    <meta name="description" content="">
+    <meta name="author" content="{{ album.author }}">
+    <meta name="viewport" content="width=device-width">
+
+    {% include 'opengraph.html' %}
+
+    <link rel="stylesheet" href="{{ theme.url }}/css/normalize.css">
+    <link rel="stylesheet" href="{{ theme.url }}/fonts/remixicon.css" media="all">
+    <link rel="stylesheet" href="{{ theme.url }}/css/simple-grid.css">
+    <link rel="stylesheet" href="{{ theme.url }}/css/lightbox.min.css">
+    <link rel="stylesheet" href="{{ theme.url }}/css/style.css">
+    <link rel="stylesheet" href="{{ theme.url }}/css/custom.css">
+
+    {% block extra_head %}{% endblock extra_head %}
+    {% include 'analytics.html' %}
+  </head>
+  <body>
+    {% include 'gtm.html' %}
+    <div class="page-container">
+      <header>
+        <div class="flex-container flex-justify-between">
+          <div class="flex-grow-2">
+            <h1>
+              <i class="ri-earth-line"></i> <a href="{{ album.index_url }}">{{ index_title }}</a>
+              /
+              {% if album.breadcrumb %}
+                {% for url, title in album.breadcrumb %}
+                  <small>{% if loop.last %}<i class="ri-folder-image-fill"></i> {% endif %}<a href="{{ url }}">{{ title }}</a>{% if not loop.last %} / {% endif %}</small>
+                {% endfor -%}
+              {% endif %}
+            </h1>
+          </div>
+          <div class="flex-grow-1">
+            {% include 'links.html' %}
+          </div>
+        </div>
+      </header>
+
+      <div id="main" role="main" class=main>
+	      {% block content %}{% endblock content %}
+      </div>
+      {% include 'footer.html' %}
+    </div>
+    {% block late_js %}{% endblock late_js %}
+    {% include 'piwik.html' %}
+  </body>
+</html>
