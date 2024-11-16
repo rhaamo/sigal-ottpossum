@@ -14,6 +14,7 @@ A simple theme for [Sigal](https://github.com/saimn/sigal) using:
 * Album view with [Justified Gallery](https://miromannino.github.io/Justified-Gallery/)
 * Collection view based on Sigal's built-in [Galleria](https://github.com/saimn/sigal/tree/master/sigal/themes/galleria) theme
 * OpenGraph (and twitter) embeds
+* Some Markdown tags made for proper film photography metadatas display (scanner model, stop, speed, iso, etc.)
 
 ## Configuration
 
