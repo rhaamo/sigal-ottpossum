@@ -54,7 +54,7 @@
                         {% else %}
                         {% if album.meta.filmused %}<i class="ri-movie-2-line"></i>: {{ album.meta.filmused|first }}<br/>{% endif %}
                         {% endif %}
-
+                        
                         {% if media.meta.shotfocal %}
                         <i class="ri-camera-lens-line"></i>: f/{{ media.meta.shotfocal|first }}<br/>
                         {% endif %}
@@ -67,7 +67,7 @@
                         {% if album.meta.filmscanner %}
                         <i class="ri-polaroid-line"></i>: Scanned with {{ album.meta.filmscanner|first }}<br />
                         {% endif %}
-                    {% else %}
+                        {% else %}
                         <i class="ri-calendar-line"></i>: {% if album.meta.date %}{{ album.meta.date|first }}{% else %}{{ media.exif.datetime }}{% endif %}<br/><br/>
                         <i class="ri-camera-line"></i>: {{ media.exif.Make }} {{ media.exif.Model }}<br />
                         {% if media.exif.LensModel %}<i class="ri-camera-line"></i>: {{ media.exif.LensModel }}<br />{% endif %}
