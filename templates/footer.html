@@ -17,7 +17,7 @@
         {% endif %}
       {% endif %}
 
-      {% if settings.display_timestamp %}
+      {% if settings.display_timestamp and not media %}
         <br />
         <i class="ri-time-line"></i> {{ generated_timestamp }}
       {% endif %}
